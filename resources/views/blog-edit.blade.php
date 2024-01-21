@@ -98,6 +98,12 @@
                     <option value="yapay-zeka">Yapay Zeka</option>
                     <option value="diger">Diğer</option>
                 </select>
+
+                <label for="likes" style="color:white; margin-bottom:15px;">Beğenme Sayısı:</label>
+                <input type="number" value="{{ old('slug', $post->likes) }}" name="likes" placeholder="Beğenme Sayısı..." required class="inputBlogTitle" maxlength="5" minlength="1" step=".01">
+                <label for="likeCount" style="color:white; margin-bottom:15px;">Beğenen Kişi Sayısı:</label>
+                <input type="number" value="{{ old('slug', $post->likeCount) }}" name="likeCount" placeholder="Beğenen Kişi Sayısı..." required class="inputBlogTitle" maxlength="10000" minlength="1">
+
                 
                 <div class="inputImageBox">
                     <label for="blogThumbnail" id="customBlogThumbnail">Blog Resmi Yükle <i class="feather-plus ml--10"></i> <br> </label>

@@ -12,5 +12,3 @@ for (let i = 0; i < blogContentChildren.length; i++) {
     }
     
 }
-
-console.log(blogContentChildren);

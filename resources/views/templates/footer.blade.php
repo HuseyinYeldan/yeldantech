@@ -91,8 +91,8 @@
                         <div class="footer-widget">
                             <h5 class="ft-title">İletişim</h5>
                             <ul class="ft-link">
-                                <li><span>Phone:</span> <a href="#">(212) 555-0120</a></li>
-                                <li><span>E-mail:</span> <a href="mailto:hr@example.com">info@yeldantech.com</a></li>
+                                <li><span>Phone:</span> <a href="tel:{{ setting('site.telefon') }}">{{ setting('site.telefon') }}</a></li>
+                                <li><span>E-mail:</span> <a href="mailto:info@yeldantech.com">info@yeldantech.com</a></li>
                             </ul>
 
                             <form class="newsletter-form mt--40" action="#">
@@ -125,7 +125,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                        <p class="rbt-link-hover text-center text-lg-start">Copyright &copy; 2023 <b>Yeldan Tech.</b> Tüm hakları saklıdır.</p>
+                        <p class="rbt-link-hover text-center text-lg-start">Copyright &copy; 2024 <b>Yeldan Tech.</b> Tüm hakları saklıdır.</p>
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                         <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">

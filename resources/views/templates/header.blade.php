@@ -30,8 +30,8 @@
                                     <div class="rbt-header-top-news">
                                         <div class="inner">
                                             <div class="content">
-                                                <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Yeni</span>
-                                                <span class="news-text">İlk defa bizimle çalışacak kullanıcılara %25 İndirim!</span>
+                                                <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Kampanya</span>
+                                                <span class="news-text">Referansla getirdiğiniz her kişi için <strong>500TL</strong> geri ödeme!</span>
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                             <a href="{{setting('site.facebook')}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                         </li>
                                         <li>
-                                            <a href="{{setting('site.twitter')}}" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                                            <a href="{{setting('site.twitter')}}" target="_blank"><i class="fab fa-twitter"></i></a>
                                         </li>
                                         <li>
                                             <a href="{{setting('site.linkedin')}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -843,7 +843,7 @@
                             </a>
                         </li>
                         <li><a href="{{setting('site.twitter')}}" target="_blank">
-                                <i class="fab fa-x-twitter"></i>
+                                <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li><a href="{{setting('site.instagram')}}" target="_blank">

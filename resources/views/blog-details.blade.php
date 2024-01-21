@@ -168,6 +168,27 @@
                     {!! $blog->content !!}
                     <hr>
 
+                    <form action="#" id="postLike" style="display:flex; justify-items:center; align-items:center;">
+                        <div id="ratingColor" style="background: rgb(248, 153, 44); height:50px; position: absolute; mix-blend-mode:color; pointer-events: none"></div>
+                        <button type="submit" name="rating" class="rating-star" value="1"><i class="fa-solid fa-star"></i></button>
+                        <button type="submit" name="rating" class="rating-star" value="2"><i class="fa-solid fa-star"></i></button>
+                        <button type="submit" name="rating" class="rating-star" value="3"><i class="fa-solid fa-star"></i></button>
+                        <button type="submit" name="rating" class="rating-star" value="4"><i class="fa-solid fa-star"></i></button>
+                        <button type="submit" name="rating" class="rating-star" value="5"><i class="fa-solid fa-star"></i></button>
+                        <span>({{ $blog->likes }}/5)  </span>
+                    </form>
+
+                    <script>
+                        var postLike = document.getElementById('postLike');
+                        var ratingColor = document.getElementById('ratingColor');
+                        var likeCount = {{ $blog->likes }}*28;
+                        ratingColor.style.width = likeCount+'px';
+
+                        postLike.addEventListener('submit',function(e){
+                            e.preventDefault();
+                        })
+                    </script>
+
                     {{-- AUTH COMMENT --}}
 
                     @if(Auth::check())
@@ -503,7 +524,7 @@
         "author": {
           "@type": "Person",
           "url": "https://www.yeldantech.com/profil/{{$blog->user->name}}",
-          "name": "Hüseyin Yeldan",
+          "name": "{{$blog->user->name}}",
           "identifier": "{{$blog->user->id}}"
         }
       }

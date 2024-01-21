@@ -257,7 +257,7 @@
                     <div class="rbt-team-modal-thumb nav nav-tabs">
                         <a class="rbt-team-thumbnail" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#{{$projeler->modalName}}">
                             <div class="thumb">
-                                <img src="{{Voyager::Image($projeler->image)}}" alt="Yeldan Tech proje">
+                                <img src="{{Voyager::Image($projeler->image)}}" alt="{{ $projeler->alt }}">
                             </div>
                         </a>
                     </div>
@@ -280,14 +280,14 @@
                         <div class="modal-body">
                             <div class="inner">
                                 <div class="row g-5 row--30 align-items-center">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="rbt-team-thumbnail">
                                             <div class="thumb">
                                                 <img class="w-100" src="{{Voyager::Image($projeler->image)}}" alt="{{$projeler->alt}}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-6">
                                         <div class="rbt-team-details">
                                             <div class="author-info">
                                                 <h4 class="title">{{$projeler->getTranslatedAttribute('title','tr')}}</h4>
@@ -319,7 +319,7 @@
 
     <!-- JS
 ============================================ -->
-<script src="https://kit.fontawesome.com/5708151086.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5708151086.js" crossorigin="anonymous"></script>
     <!-- Modernizer JS -->
     <script src="/assets/js/vendor/modernizr.min.js"></script>
     <!-- jQuery JS -->

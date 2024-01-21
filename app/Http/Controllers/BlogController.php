@@ -137,6 +137,8 @@ class BlogController extends Controller
             'content' => 'required|string|max:100000|min:10',
             'slug' => 'required|string|unique:blogs,slug|max:80|min:10',
             'category' => 'required|string|max:40',
+            'likes' => 'required|max:5',
+            'likeCount' => 'required|min:1'
         ]);
         
         $thumbnail = $request->file('blog-thumbnail');
@@ -156,6 +158,8 @@ class BlogController extends Controller
         $blog->image = $thumbnailPath; // Store the thumbnail path in the database
         $blog->content = $request->input('content');
         $blog->category = $request->input('category');
+        $blog->likes = $request->input('likes');
+        $blog->likeCount = $request->input('likeCount');
         
         // Transform and set the slug using Str::slug()
         $blog->slug = Str::slug($request->input('slug'));
@@ -163,7 +167,7 @@ class BlogController extends Controller
         $blog->save();
     
         // Redirect or return a response as needed
-        return redirect()->route('mainpage'); // Adjust the route name accordingly
+        return redirect('/blog/'.$blog->slug)->with('success', 'Post updated successfully');
     }
 
 
@@ -211,6 +215,8 @@ class BlogController extends Controller
                 'min:10',
             ],
             'category' => 'required|string|max:40',
+            'likes' => 'required|max:5',
+            'likeCount' => 'required|min:1'
         ]); 
 
     
@@ -218,7 +224,7 @@ class BlogController extends Controller
         $post->excerpt = $request->input('aciklama');
         $post->content = $request->input('content');
         $post->category = $request->input('category');
-    
+
         if ($request->hasFile('blog-thumbnail')) {
             $request->validate([
                 'blog-thumbnail' => 'image|mimes:jpeg,png,jpg,webp|max:4096',
@@ -236,10 +242,11 @@ class BlogController extends Controller
         }
     
         $post->slug = Str::slug($request->input('slug'));
-    
+        $post->likes = $request->input('likes');
+        $post->likeCount = $request->input('likeCount');
         $post->save();
     
-        return redirect()->route('mainpage')->with('success', 'Post updated successfully');
+        return redirect('/blog/'.$post->slug)->with('success', 'Post updated successfully');
     }
 
 

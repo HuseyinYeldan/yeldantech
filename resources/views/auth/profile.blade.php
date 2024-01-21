@@ -149,7 +149,7 @@
                                     <div class="feature-sin best-seller-badge text-end h-100">
                                         <span class="rbt-badge-2 w-100 text-center badge-full-height">
                                             <span class="image"><img src="/assets/images/icons/card-icon-1.png"
-                                                    alt="Best Seller Icon"></span> Verified by Yeldan Tech
+                                                    alt="Best Seller Icon"></span> Yeldan Tech tarafından onaylandı
                                         </span>
                                     </div>
                                 </div>

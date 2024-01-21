@@ -92,6 +92,9 @@
                     <option value="diger">Diğer</option>
                 </select>
 
+                <input type="number" name="likes" placeholder="Beğenme Sayısı..." required class="inputBlogTitle" maxlength="5" minlength="1" step=".01">
+                <input type="number" name="likeCount" placeholder="Beğenen Kişi Sayısı..." required class="inputBlogTitle" maxlength="10000" minlength="1">
+
                 <div class="inputImageBox">
                     <label for="blogThumbnail" id="customBlogThumbnail">Blog Resmi Yükle <i class="feather-plus ml--10"></i> <br> </label>
                     <input accept="image/*" name="blog-thumbnail" type='file' required id="blogThumbnail" />
