@@ -46,7 +46,7 @@
                                             <a href="{{setting('site.facebook')}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                         </li>
                                         <li>
-                                            <a href="{{setting('site.twitter')}}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="{{setting('site.twitter')}}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                                         </li>
                                         <li>
                                             <a href="{{setting('site.linkedin')}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -142,10 +142,10 @@
                                                             <div class="vartical-nav-content-menu">
                                                                 <h3 class="rbt-short-title">Projeler</h3>
                                                                 <ul class="rbt-vertical-nav-list-wrapper">
-                                                                    <li><a href="#">Proje 1</a></li>
-                                                                    <li><a href="#">Proje 2</a></li>
-                                                                    <li><a href="#">Proje 3</a></li>
-                                                                    <li><a href="#">Proje 4</a></li>
+                                                                    @foreach ($projects as $proje)
+
+                                                                    <li><a href="/projelerimiz">{{ $proje->title }}</a></li>
+                                                                    @endforeach
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -162,8 +162,8 @@
                                                             <div class="vartical-nav-content-menu">   
                                                                 <h3 class="rbt-short-title">Bloglar</h3>
                                                                 <ul class="rbt-vertical-nav-list-wrapper">
-                                                                    @foreach ($blogs->sortByDesc('views')->slice(0,4) as $blogNav)
-                                                                    <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}</a></li>
+                                                                    @foreach ($blogs->sortByDesc('views')->slice(0, 4) as $blogNav)
+                                                                        <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}</a></li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
@@ -259,18 +259,18 @@
                                                 <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
                                                     <h3 class="rbt-short-title">Son Bloglar 📰</h3>
                                                     <ul class="mega-menu-item">
-                                                    @foreach ($blogs->sortByDesc('created_at')->slice(0,4) as $blogNav)
-                                                        <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}  @if ($blogNav->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card"> Yeni🔥 @endif </span> </a></li>
-                                                    @endforeach
+                                                        @foreach ($blogs->sortByDesc('created_at')->slice(0, 5) as $blogNav)
+                                                            <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}  @if ($blogNav->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card"> Yeni🔥 @endif </span> </a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
 
                                                 <div class="col-lg-12 col-xl-4 col-xxl-4 single-mega-item">
                                                     <h3 class="rbt-short-title">Popüler Bloglar ❤️‍🔥 </h3>
                                                     <ul class="mega-menu-item">
-                                                    @foreach ($blogs->sortByDesc('views')->slice(0,4) as $blogNav)
-                                                        <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}  @if ($blogNav->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card"> Yeni🔥 @endif </span> </a></li>
-                                                    @endforeach
+                                                        @foreach ($blogs->sortByDesc('views')->slice(0, 5) as $blogNav)
+                                                            <li><a href="/blog/{{$blogNav->slug}}">{{$blogNav->title}}  @if ($blogNav->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card"> Yeni🔥 @endif </span> </a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
 
@@ -285,62 +285,9 @@
                                     <!-- End Mega Menu  -->
                                 </li>
 
-                                <li class="with-megamenu has-menu-child-item">
-                                    {{-- <a href="/testler">Testler <i class="feather-chevron-down"></i></a> --}}
-                                    <!-- Start Mega Menu  -->
-                                    <div class="rbt-megamenu grid-item-2" style="left:-250px;">
-                                        <div class="wrapper">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mega-top-banner">
-                                                        <div class="content">
-                                                            <h4 class="title">Developer hub</h4>
-                                                            <p class="description">Start building fast, with code samples, key resources and more.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row row--15">
-                                                <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                    <h3 class="rbt-short-title">Course Layout</h3>
-                                                    <ul class="mega-menu-item">
-                                                        <li><a href="course-filter-one-toggle.html">Filter One Toggle</a></li>
-                                                        <li><a href="course-filter-one-open.html">Filter One Open</a></li>
-                                                        <li><a href="course-filter-two-toggle.html">Filter Two Toggle</a></li>
-                                                        <li><a href="course-filter-two-open.html">Filter Two Open</a></li>
-                                                        <li><a href="course-with-tab.html">Course With Tab</a></li>
-                                                        <li><a href="course-with-tab-two.html">Course With Tab Two</a></li>
-                                                        <li><a href="course-card-2.html">Course Card Two</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-12 col-xl-6 col-xxl-6 single-mega-item">
-                                                    <h3 class="rbt-short-title">Course Layout</h3>
-                                                    <ul class="mega-menu-item">
-                                                        <li><a href="course-card-3.html">Course Card Three</a></li>
-                                                        <li><a href="course-masonry.html">Course Masonry</a></li>
-                                                        <li><a href="course-with-sidebar.html">Course With Sidebar</a></li>
-                                                        <li><a href="course-details.html">Course Details</a></li>
-                                                        <li><a href="course-details-2.html">Course Details Two</a></li>
-                                                        <li><a href="lesson.html">Course Lesson <span class="rbt-badge-card">New</span></a></li>
-                                                        <li><a href="create-course.html">Create Course <span class="rbt-badge-card">New</span></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <ul class="nav-quick-access">
-                                                        <li><a href="#"><i class="feather-folder-minus"></i> Quick Start Guide</a></li>
-                                                        <li><a href="#"><i class="feather-folder-minus"></i> For Open Source</a></li>
-                                                        <li><a href="#"><i class="feather-folder-minus"></i> API Status</a></li>
-                                                        <li><a href="#"><i class="feather-folder-minus"></i> Support</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Mega Menu  -->
+                                <li>
+                                    <a href="/kategori/hizmet-bolgesi">Hizmet Bölgelerimiz</a>
                                 </li>
-
                                 <li>
                                     <a href="/iletisim">İletişim </a>
                                 </li>
@@ -420,6 +367,7 @@
                                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                     <i class="feather-log-out"></i>
                                                     <span>Çıkış Yap</span>
+                                                </a>
                                             </form>
                                         </li>
                                     </ul>
@@ -444,82 +392,56 @@
                                             <img src="{{Voyager::Image(Auth::user()->avatar)}}" alt="User Images">
                                         </div>
                                         <div class="admin-info">
-                                            <span class="name">Nipa Bali</span>
-                                            <a class="rbt-btn-link color-primary" href="profile.html">View Profile</a>
+                                            <span class="name">                            
+                                                <a href="/profil/{{Auth::user()->name}}">
+                                                    {{ Auth::user()->name }} 
+                                                    @if(Auth::user()->role_id == '1' || Auth::user()->role_id == '3')
+                                                        <img src="/assets/images/icons/verified.webp" alt="" style="width:20px;">
+                                                    @endif
+                                                </a>
+                                            </span>
+                                            <a class="rbt-btn-link color-primary" href="/profil/{{Auth::user()->name}}">Profili Görüntüle</a>
                                         </div>
                                     </div>
                                     <ul class="user-list-wrapper">
                                         <li>
-                                            <a href="instructor-dashboard.html">
-                                                <i class="feather-home"></i>
-                                                <span>My Dashboard</span>
+                                            <a href="/profil/{{Auth::user()->name}}">
+                                                <i class="feather-user"></i>
+                                                <span>Profilim</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
-                                                <i class="feather-bookmark"></i>
-                                                <span>Bookmark</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="instructor-enrolled-courses.html">
-                                                <i class="feather-shopping-bag"></i>
-                                                <span>Enrolled Courses</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="instructor-wishlist.html">
-                                                <i class="feather-heart"></i>
-                                                <span>Wishlist</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="instructor-reviews.html">
-                                                <i class="feather-star"></i>
-                                                <span>Reviews</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="instructor-my-quiz-attempts.html">
+                                            <a href="/profil/{{Auth::user()->name}}#bloglarim">
                                                 <i class="feather-list"></i>
-                                                <span>My Quiz Attempts</span>
+                                                <span>Bloglarım</span>
                                             </a>
                                         </li>
+                                        @if (Auth::user()->name == 'admin')
                                         <li>
-                                            <a href="instructor-order-history.html">
-                                                <i class="feather-clock"></i>
-                                                <span>Order History</span>
+                                            <a href="/admin">
+                                                <i class="feather-airplay"></i>
+                                                <span>Admin Paneli</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="instructor-quiz-attempts.html">
-                                                <i class="feather-message-square"></i>
-                                                <span>Question & Answer</span>
-                                            </a>
-                                        </li>
+                                        @endif
+
                                     </ul>
                                     <hr class="mt--10 mb--10">
                                     <ul class="user-list-wrapper">
                                         <li>
-                                            <a href="#">
-                                                <i class="feather-book-open"></i>
-                                                <span>Getting Started</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <hr class="mt--10 mb--10">
-                                    <ul class="user-list-wrapper">
-                                        <li>
-                                            <a href="instructor-settings.html">
+                                            <a href="/profil-duzenle">
                                                 <i class="feather-settings"></i>
-                                                <span>Settings</span>
+                                                <span>Ayarlar</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="index.html">
-                                                <i class="feather-log-out"></i>
-                                                <span>Logout</span>
-                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <i class="feather-log-out"></i>
+                                                    <span>Çıkış Yap</span>
+                                                </a>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
@@ -608,108 +530,7 @@
             </div>
             <!-- End Search Dropdown  -->
         </div>
-        <!-- Start Side Vav -->
-        <div class="rbt-offcanvas-side-menu rbt-category-sidemenu">
-            <div class="inner-wrapper">
-                <div class="inner-top">
-                    <div class="inner-title">
-                        <h4 class="title">Course Category</h4>
-                    </div>
-                    <div class="rbt-btn-close">
-                        <button class="rbt-close-offcanvas rbt-round-btn"><i class="feather-x"></i></button>
-                    </div>
-                </div>
-                <nav class="side-nav w-100">
-                    <ul class="rbt-vertical-nav-list-wrapper vertical-nav-menu">
-                        <li class="vertical-nav-item">
-                            <a href="#">Course School</a>
-                            <div class="vartical-nav-content-menu-wrapper">
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="#">Art</a></li>
-                                        <li><a href="#">Figma</a></li>
-                                        <li><a href="#">Adobe</a></li>
-                                    </ul>
-                                </div>
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Photo</a></li>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">Math</a></li>
-                                        <li><a href="#">Read</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="vertical-nav-item">
-                            <a href="#">Online School</a>
-                            <div class="vartical-nav-content-menu-wrapper">
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Photo</a></li>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">Math</a></li>
-                                        <li><a href="#">Read</a></li>
-                                    </ul>
-                                </div>
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="#">Art</a></li>
-                                        <li><a href="#">Figma</a></li>
-                                        <li><a href="#">Adobe</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="vertical-nav-item">
-                            <a href="#">kindergarten</a>
-                            <div class="vartical-nav-content-menu-wrapper">
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Photo</a></li>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">Math</a></li>
-                                        <li><a href="#">Read</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="vertical-nav-item">
-                            <a href="#">Classic LMS</a>
-                            <div class="vartical-nav-content-menu-wrapper">
-                                <div class="vartical-nav-content-menu">
-                                    <h3 class="rbt-short-title">Course Title</h3>
-                                    <ul class="rbt-vertical-nav-list-wrapper">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="#">Art</a></li>
-                                        <li><a href="#">Figma</a></li>
-                                        <li><a href="#">Adobe</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="read-more-btn">
-                        <div class="rbt-btn-wrapper mt--20">
-                            <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
-                                <span>Learn More</span>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-                <div class="rbt-offcanvas-footer">
 
-                </div>
-            </div>
-        </div>
-        <!-- End Side Vav -->
         <a class="rbt-close_side_menu" href="javascript:void(0);"></a>
     </header>
     
@@ -756,11 +577,9 @@
                                 <div class="row row--15">
                                     <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                         <ul class="mega-menu-item">
-                                            <li><a href="about-us-01.html">About Us</a></li>
-                                            <li><a href="about-us-02.html">About Us 02</a></li>
-                                            <li><a href="event-grid.html">Event Grid</a></li>
-                                            <li><a href="event-list.html">Event List</a></li>
-                                            <li><a href="event-sidebar.html">Event Sidebar</a></li>
+                                            @foreach ($projects as $proje)
+                                            <li><a href="/projelerimiz">{{ $proje->title }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -777,7 +596,8 @@
                                 <div class="row row--15">
                                     <div class="col-lg-12 col-xl-3 col-xxl-3 single-mega-item">
                                         <ul class="mega-menu-item">
-                                            @foreach ($blogs->sortByDesc('created_at')->slice(0,5) as $bloglar)
+                                            @foreach ($blogs->reject(function($blog) { return $blog->category == 'hizmet-bolgesi'; })->sortByDesc('created_at')->slice(0, 5) as $bloglar)
+
                                             <li class="mb--10"><a href="/blog/{{$bloglar->slug}}" class="d-flex" style="justify-content: space-between">{{$bloglar->title}}  @if ($bloglar->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card"> Yeni🔥 @endif </span> </a></li>
                                             @endforeach
                                             <li class="mb--10"><a href="/blog" class="d-flex"> Tüm Bloglarımız </a></li>
@@ -789,37 +609,8 @@
                         <!-- End Mega Menu  -->
                     </li>
 
-                    <li class="with-megamenu has-menu-child-item position-static">
-                        {{-- <a href="#">Testler <i class="feather-chevron-down"></i></a> --}}
-                        <!-- Start Mega Menu  -->
-                        <div class="rbt-megamenu grid-item-3">
-                            <div class="wrapper">
-                                <div class="row row--15 single-dropdown-menu-presentation">
-                                    <div class="col-lg-4 col-xxl-4 single-mega-item">
-                                        <ul class="mega-menu-item">
-                                            <li><a href="style-guide.html">Style Guide <span class="rbt-badge-card">Hot</span></a></li>
-                                            <li><a href="accordion.html">Accordion</a></li>
-                                            <li><a href="advancetab.html">Advance Tab</a></li>
-                                            <li><a href="brand.html">Brand</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="btn-wrapper">
-                                            <a class="rbt-btn btn-gradient hover-icon-reverse square btn-xl w-100 text-center mt--30 hover-transform-none" href="#">
-                                                <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">Visit Histudy Template</span>
-                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Mega Menu  -->
+                    <li>
+                        <a href="/kategori/hizmet-bolgesi">Hizmet Bölgelerimiz</a>
                     </li>
 
                     <li>
@@ -843,7 +634,7 @@
                             </a>
                         </li>
                         <li><a href="{{setting('site.twitter')}}" target="_blank">
-                                <i class="fab fa-twitter"></i>
+                                <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li><a href="{{setting('site.instagram')}}" target="_blank">

@@ -2,11 +2,18 @@
 <html lang="tr">
 
 <head>
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KVLKZ553');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Blog - {{setting('site.title')}} </title>
     <meta name="robots" content=" follow" />
-    <meta name="description" content="">
+    <meta name="description" content="Yeldan Tech'in blog sayfasıyla Yazılım, SEO, Tasarım ve bir çok şey öğren!">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.png">
@@ -34,14 +41,17 @@
     <link rel="stylesheet" href="/assets/css/plugins/magnigy-popup.min.css">
     <link rel="stylesheet" href="/assets/css/plugins/plyr.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://www.yeldantech.com/blog">
 </head>
 
 <body class="rbt-header-sticky">
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVLKZ553"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     @include('templates.header')
-    @foreach ($blogs->sortByDesc('created_at')->slice(0,1) as $blog)
-
+    @foreach($blogs->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->sortByDesc('created_at')->slice(0, 1) as $blog)
 
     <div class="rbt-page-banner-wrapper" style="padding: 80px 0px 235px;">
         <!-- Start Banner BG Image  -->
@@ -66,16 +76,16 @@
                             <div class=" title-wrapper">
                                 <h1 class="title mb--0">Tüm Bloglarımız</h1>
                                 <a href="#" class="rbt-badge-2">
-                                    <div class="image">🎉</div> {{$blog->count()}} blog mevcut
+                                    <div class="image">🎉</div> {{$blogs->count()}} blog mevcut
                                 </a>
                             </div>
                             <p class="description">Tüm bloglarımızı oku ve bilgilen! </p>
 
                             <h4 class="description">Kategoriler</h4>
-                            <a href="/kategori/seo"> <button class="category-button">SEO</button></a>
+                            {{-- <a href="/kategori/seo"> <button class="category-button">SEO</button></a> --}}
                             <a href="/kategori/yazilim"> <button class="category-button">Yazılım</button></a>
-                            <a href="/kategori/tasarim"> <button class="category-button">Tasarım</button></a>
-                            <a href="/kategori/yapay-zeka"> <button class="category-button">Yapay Zeka</button></a>
+                            {{-- <a href="/kategori/tasarim"> <button class="category-button">Tasarım</button></a> --}}
+                            {{-- <a href="/kategori/yapay-zeka"> <button class="category-button">Yapay Zeka</button></a> --}}
                             <a href="/kategori/diger"> <button class="category-button">Diğer</button></a>
                         </div>
                     </div>
@@ -116,7 +126,8 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--20" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
 
                     <!-- Start Single Card  -->
-                    @foreach ($blogs->sortByDesc('created_at')->slice(1,3) as $blog)
+                    @foreach($blogs->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->sortByDesc('created_at')->slice(1, 3) as $blog)
+
                     <div class="rbt-card card-list variation-02 rbt-hover mt--30">
                         @if ($blog->created_at > $mytime = Carbon\Carbon::yesterday()) <span class="rbt-badge-card" style="position: absolute; left:10px; top:10px;;"> Yeni🔥 @endif </span>
                         <div class="rbt-card-img">
@@ -142,7 +153,7 @@
             <!-- Start Card Area -->
             <div class="row g-5 mt--15">
 
-                @foreach ($blogs->sortByDesc('created_at')->slice(4) as $blog)
+                @foreach($blogs->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->sortByDesc('created_at')->slice(4) as $blog)
 
                 <!-- Start Single Card  -->
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12">

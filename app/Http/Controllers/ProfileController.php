@@ -12,20 +12,23 @@ class ProfileController extends Controller
 {
     public function index($slug){
         $user = User::where('name', $slug)->first();
-        $blogs = Blog::all();
+        $blogs = Blog::whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
         $projects = Project::all();
 
         if (!$user) {
-            return view('404', compact('projects','blogs')); 
+            return response()->view('404', compact('projects', 'blogs'), 404);
         } 
 
-        $blogsPaginate = Blog::where('publisher', $user->id)->orderByDesc('created_at')->paginate(6);
+        $blogsPaginate = Blog::where('publisher', $user->id)->orderByDesc('created_at')->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->paginate(6);
+        $blogCount = Blog::where('publisher', $user->id)->orderByDesc('created_at')->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->count();
+
+
         if($user) {
-            return view('auth.profile', compact('user','blogs','blogsPaginate','projects'));
+            return view('auth.profile', compact('user','blogs','blogsPaginate','blogCount','projects'));
         }
 
         if ($blogsPaginate->currentPage() > $blogsPaginate->lastPage()) {
-            return view('404', compact('projects','blogs')); 
+            return response()->view('404', compact('projects', 'blogs'), 404);
         }
     }
 }

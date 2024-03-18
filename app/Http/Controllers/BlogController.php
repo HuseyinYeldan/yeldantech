@@ -24,10 +24,16 @@ class BlogController extends Controller
     public function index($slug)
     {
         $blog = Blog::where('slug', $slug)->first();
-        $allblogs = Blog::all();
-        $blogs = Blog::all();
+        $blogs = Blog::latest('created_at')
+            ->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
+        $allblogs = $blogs;
+
+
         $projects = Project::all();
     
+        if(!$blog){
+            return response()->view('404', compact('projects', 'blogs'), 404);
+        }
         $viewedPosts = Session::get('viewed_posts', []);
         if (!in_array($blog->id, $viewedPosts)) {
             Blog::where('id', $blog->id)->increment('views', 1, ['updated_at' => $blog->updated_at]);
@@ -58,10 +64,14 @@ class BlogController extends Controller
     }
     
     
+    
 
     public function blogs()
     {
-        $blogs = Blog::latest('created_at')->paginate(7);
+        $blogs = Blog::latest('created_at')
+            ->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])
+            ->paginate(7);
+    
         $projects = Project::all();
     
         // Check if the current page is out of bounds
@@ -71,6 +81,7 @@ class BlogController extends Controller
     
         return view('blog', compact('blogs', 'projects'));
     }
+    
 
     public function add(){
         $blogs = Blog::all();
@@ -272,8 +283,9 @@ class BlogController extends Controller
     }
 
     public function category($category){
-        $blogCat = Blog::where('category', $category)->paginate(7);
-        $blogs = Blog::all();
+        $blogCat = Blog::where('category', $category) ->whereNotIn('category',  ['sablon'])->paginate(7);
+        $blogs = Blog::latest('created_at')
+            ->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
         $projects = Project::all();
     
         if ($blogCat->isEmpty()) {

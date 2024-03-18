@@ -19,7 +19,9 @@ class AboutController extends Controller
         $reasons = Reason::all();
         $faqs = Faq::all();
         $projects = Project::all();
-        $blogs = Blog::paginate(4);
+        $blogs = Blog::latest('created_at')
+            ->whereNotIn('category', ['hizmet-bolgesi', 'sablon'])
+            ->paginate(4);
         return view('about', compact('pages','testimonials','reasons','faqs','blogs','projects'));
     }
 }

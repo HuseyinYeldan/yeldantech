@@ -1082,27 +1082,47 @@ ol ul {
   border-bottom-right-radius: 10px;
 
 }
-.social-share{
-  width:60px;
-  height: 100px;
-  position: fixed;
-  left: 0;
-  top: 50%;
-  bottom: 50%;
-  transform: translateY(-50%);
-  background-color: var(--secondary-opacity);
+.blog-share{
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  flex-direction: column;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-
+  gap: 20px;
+  font-size:18pt;
 }
-.social-share i{
-  font-size: 24pt;
-  color: var(--color-primary);
+.blog-share i{
+  width: 35px;
+  height: 35px;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: .3s background-color, .3s color;
   cursor: pointer;
+}
+.blog-share .fa-facebook-f:hover{
+  background-color: #316FF6;
+  color: white;
+}
+.blog-share .fa-x-twitter:hover{
+  background-color: #222222;
+  color: white;
+}
+.blog-share .fa-linkedin-in:hover{
+  background-color: #0077b5;
+  color: white;
+}
+.blog-share .fa-share:hover{
+  background-color: var(--color-primary);
+  color: white;
+}
+.content-footer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 /*=====================
     All Extend Here
@@ -15166,11 +15186,56 @@ span.transparent-button:hover i {
   display: block;
 }
 .rbt-card .rbt-card-img a img {
-  width: 100%;
+  width:100%;
   transition: 0.5s;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: var(--radius);
 }
+.image-parent{
+  position: relative;
+}
+.image-parent::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: .5s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-size: 24pt;
+  color: white;
+  font-weight: bold;
+  align-items: center;
+}
+.image-parent:hover:after{
+  content: '🔗 Resmi Kopyala';
+  text-shadow: 0px 0px 10px black;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#image-copied{
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  background-color: #f2984acc;
+  border-radius: 100px;
+  width: 220px;
+  height: 50px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #222;
+  gap: 6px;
+  transition: .3s ease;
+}
+
 .rbt-card .rbt-card-body {
   padding-top: 30px;
 }
@@ -15320,7 +15385,6 @@ span.transparent-button:hover i {
   }
 }
 .rbt-card.variation-02 .rbt-card-img a img {
-  max-height: 350px;
   border-radius: 6px 6px 0 0;
 }
 .rbt-card.height-auto .rbt-card-img a img {
@@ -15458,9 +15522,7 @@ span.transparent-button:hover i {
   margin-top: 0;
   opacity: 1;
 }
-.rbt-card.height-330 .rbt-card-img a img {
-  max-height: 330px;
-}
+
 .rbt-card.card-list {
   display: flex;
   max-height: 200px;
@@ -15488,8 +15550,88 @@ span.transparent-button:hover i {
   max-height: initial;
   max-width: 290px;
   min-width: 290px;
-  object-fit: cover;
-  height: 100%;
+  object-fit: contain;
+  /* height: 100%; */
+}
+.fr-class-code{
+  display: block;
+  font-weight: bold;
+  background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary), var(--color-secondary), var(--color-primary));  color: white !important;
+  padding: 15px;
+  width: 100% !important;
+  text-shadow: -4px 4px 20px rgb(92, 46, 3);
+	text-shadow: -2px 2px 0 rgb(92, 46, 3),
+				  1px 1px 0 rgb(92, 46, 3),
+				 1px -1px 0 rgb(92, 46, 3),
+				-1px -1px 0 rgb(92, 46, 3);
+  border-radius: 5px;
+  text-align: center;
+}
+.whatsapp-button{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22pt;
+  color: white;
+  box-shadow:inset 0px 0px 10px #043310;
+  padding: 14px;
+  z-index: 99999;
+  border-radius: 100px;
+  background-color: #0d8d2d;
+  box-shadow: 0px 0px 4px 3px #0d8d2d;
+  animation: whatsapp-animation 5s infinite ease ;
+}
+.whatsapp-button:hover{
+  padding: 20px;
+  font-size: 28pt;
+  color: white;
+}
+@keyframes whatsapp-animation {
+  0%{
+    transform: rotate(0deg);
+    background-color: #0d8d2d;
+    box-shadow: 0px 0px 4px 3px #0d8d2d;
+    bottom: 20px;
+  }
+  15%{
+    transform: rotate(10deg);
+    background-color: #24a043;
+    box-shadow: 0px 0px 4px 3px #24a043;
+    bottom: 30px;
+  }
+  30%{
+    transform: rotate(0deg);
+    background-color: #0d8d2d;
+    box-shadow: 0px 0px 4px 3px #0d8d2d;
+    bottom: 20px;
+  }
+  50%{
+    transform: rotate(-20deg);
+    background-color: #0a501c;
+    box-shadow: 0px 0px 4px 3px #0a501c;
+    bottom: 10px;
+  }
+  65%{
+    transform: rotate(0deg);
+    background-color: #0d8d2d;
+    box-shadow: 0px 0px 4px 3px #0d8d2d;
+    bottom: 20px;
+  }
+  80%{
+    transform: rotate(40deg);
+    background-color: #20b946;
+    box-shadow: 0px 0px 4px 3px #20b946;
+    bottom: 50px;
+  }
+  100%{
+    transform: rotate(0deg);
+    background-color: #0d8d2d;
+    box-shadow: 0px 0px 4px 3px #0d8d2d;
+    bottom: 20px;
+  }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .rbt-card.card-list .rbt-card-img a img {
@@ -15503,7 +15645,7 @@ span.transparent-button:hover i {
     max-width: inherit;
     min-width: inherit;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: var(--radius) var(--radius) 0 0;
   }
 }
@@ -20416,6 +20558,9 @@ ul.testimonial-thumb-wrapper li {
     padding-left: 5px;
     padding-right: 5px;
     margin-bottom: 10px;
+  }
+  .rbt-header-top.rbt-header-top-1{
+    display: none;
   }
 }
 ul.testimonial-thumb-wrapper li a {

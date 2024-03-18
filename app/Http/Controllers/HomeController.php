@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use TCG\Voyager\Models\Page;
 use App\Testimonial;
 use App\Reason;
@@ -17,19 +18,21 @@ class HomeController extends Controller
         $testimonials = Testimonial::all();
         $reasons = Reason::all();
         $projects = Project::all();
-        $blogs = Blog::all();
-
+        $blogs = Blog::whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
         return view('index', compact('pages', 'testimonials', 'reasons', 'projects','blogs'));
     }
-    public function notfound() 
 
+    public function notfound() 
     { 
         $pages = Page::all(); 
         $testimonials = Testimonial::all();
         $reasons = Reason::all();
         $projects = Project::all();
-        $blogs = Blog::all();
-        return view('404', compact('pages', 'testimonials', 'reasons', 'projects','blogs')); 
+        $blogs = Blog::whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
+        
+        // Return a 404 response with the 404 view
+        return response()->view('404', compact('pages', 'testimonials', 'reasons', 'projects', 'blogs'), 404);
     }
+    
 
 }

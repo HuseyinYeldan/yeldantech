@@ -11,7 +11,7 @@ class SearchController extends Controller
     public function index(Request $request){
         // Get the search value from the request
         $search = $request->input('ara');
-        $blogs = Blog::all();
+        $blogs = Blog::whereNotIn('category', ['hizmet-bolgesi', 'sablon'])->get();
         $projects = Project::all();
 
         // Search in the title and body columns from the posts table

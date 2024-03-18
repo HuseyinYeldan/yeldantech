@@ -2,6 +2,13 @@
 <html lang="tr">
 
 <head>
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KVLKZ553');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Blog - {{setting('site.title')}} </title>
@@ -34,10 +41,14 @@
     <link rel="stylesheet" href="/assets/css/plugins/magnigy-popup.min.css">
     <link rel="stylesheet" href="/assets/css/plugins/plyr.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://www.yeldantech.com/blog">
 </head>
 
 <body class="rbt-header-sticky">
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVLKZ553"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     @include('templates.header')
     @foreach ($blogCat->sortByDesc('created_at')->slice(0,1) as $blog)
 
@@ -63,7 +74,7 @@
 
                             <div class=" title-wrapper">
                                 <h1 class="title mb--0">
-                                    @switch($blog->category)
+                                        @switch($blog->category)
                                         @case('yazilim')
                                             Yazılım
                                             @break
@@ -79,8 +90,10 @@
                                         @case('diger')
                                             Diğer
                                         @break
+                                        @case('hizmet-bolgesi')
+                                            Hizmet Bölgesi
+                                        @break
                                         @default
-                                            
                                     @endswitch
                                     Kategorisi
                                 </h1>
@@ -89,10 +102,10 @@
                             <p class="description">Tüm bloglarımızı oku ve bilgilen! </p>
 
                             <h4 class="description">Kategoriler</h4>
-                            <a href="/kategori/seo"> <button class="category-button">SEO</button></a>
+                            {{-- <a href="/kategori/seo"> <button class="category-button">SEO</button></a> --}}
                             <a href="/kategori/yazilim"> <button class="category-button">Yazılım</button></a>
-                            <a href="/kategori/tasarim"> <button class="category-button">Tasarım</button></a>
-                            <a href="/kategori/yapay-zeka"> <button class="category-button">Yapay Zeka</button></a>
+                            {{-- <a href="/kategori/tasarim"> <button class="category-button">Tasarım</button></a> --}}
+                            {{-- <a href="/kategori/yapay-zeka"> <button class="category-button">Yapay Zeka</button></a> --}}
                             <a href="/kategori/diger"> <button class="category-button">Diğer</button></a>
                         </div>
                     </div>
@@ -252,7 +265,7 @@
     <script src="/assets/js/vendor/easypie.js"></script>
     <script src="/assets/js/vendor/text-type.js"></script>
     <script src="/assets/js/vendor/jquery-one-page-nav.js"></script>
-    <script src="/assets/js/vendor/bootstrap-select.min.js"></script>
+    {{-- <script src="/assets/js/vendor/bootstrap-select.min.js"></script> --}}
     <script src="/assets/js/vendor/jquery-ui.js"></script>
     <script src="/assets/js/vendor/magnify-popup.min.js"></script>
     <script src="/assets/js/vendor/paralax-scroll.js"></script>
